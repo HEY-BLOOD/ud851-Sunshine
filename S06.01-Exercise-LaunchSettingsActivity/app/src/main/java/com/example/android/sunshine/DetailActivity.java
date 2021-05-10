@@ -2,11 +2,14 @@ package com.example.android.sunshine;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import com.example.android.sunshine.settings.SettingsActivity;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -55,5 +58,20 @@ public class DetailActivity extends AppCompatActivity {
         return true;
     }
 
-    // TODO (7) Launch SettingsActivity when the Settings option is clicked
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+            // COMPLETED (7) Launch SettingsActivity when the Settings option is clicked
+            case R.id.action_settings:
+                Intent intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
